@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Rochambeau</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Rock, Paper, Scissors Game</h1>
+            <p>Let's Play Rock, Paper Scissors! Press your choice and then press PLAY!</p>
+            <p>
+                <button type="button" class="btn btn-default" id="rock">Rock</button>
+                <button type="button" class="btn btn-default" id="paper">Paper</button>
+                <button type="button" class="btn btn-default" id="scissors">Scissors</button>
+            </p>
+            <p></p>
+            <input type="button" value="Play" class="btn btn-primary" id="play">
+            <p></p>
+            <div id="result"></div>
+            <div id="scoreboard">
+              <table class="table">
+                <tr>
+                    <td>Wins:</td>
+                    <td>Losses:</td>
+                    <td>Ties:</td>
+                </tr>
+                <tr>
+                    <td id="wins">0</td>
+                    <td id="losses">0</td>
+                    <td id="ties">0</td>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </body>
+    <script src="rochambeau.js"></script>
+</html>
