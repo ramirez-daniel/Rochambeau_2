@@ -1,62 +1,75 @@
-// Stores the current player's and computer's choices
-// 0 = Rock, 1 = Paper, 2 = Scissors, 3 = Spock, 4 = Lizard
-var playerChoice;
-var computerChoice;
+/**
+ * Represents a player
+ */
+function Player(){
+    this.choice = null;
+}
 
-// Stores the lables for the choices
-var choices = ["Rock", "Paper", "Scissors", "Spock", "Lizard"];
+var player = new Player();
+var computer = new Player();
 
-// Variable to store the score
-// score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0,0,0];
+/**
+ * Represents the choices
+ */
+var choices  = {
+    ROCK: 0,
+    PAPER: 1,
+    SCISSORS: 2,
+    SPOCK: 3,
+    LIZARD: 4
+}
 
-//Variable to score the matches
-// score[0] = wins, score[1] = losses
-var matches = [0,0];
+// Stores the score.
+var score = {
+    wins: 0,
+    losses: 0,
+    ties: 0
+}
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
-    playerChoice = choice;
-    console.log("My choice = " + choice);
+    player.choice = choice;
+    console.log("My choice = " + player.choice);
     storeComputerChoice();
 }
 
-// Generate computer's random choice
+// Generate the computer's random choice
 function storeComputerChoice() {
-    computerChoice = Math.floor(Math.random()*5);
-    console.log("Computer choice = " + computerChoice);
+    // Generate computer's random choice
+    computer.choice = Math.floor(Math.random()*5);
+    console.log("Computer choice = " + computer.choice);
 }
 
 // This is the function for playing the game
 function playGame(){
     // Here is the game ruleset algorithm
-    if (playerChoice == computerChoice) {
+    if (player.choice == computer.choice) {
         // We have a tie!
-        updateScore(1);
+        ++score.ties;
         displayGameResult("tie")
-    } else if (playerChoice == 0 && computerChoice == 2 || computerChoice == 4) {
+    } else if (player.choice == choices.ROCK && computer.choice == choices.SCISSORS || computer.choice == choices.LIZARD) {
         // Rock breaks scissors or kills lizard - a win!
-        updateScore(0);
+        ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 1 && computerChoice == 0 || computerChoice == 3) {
+    } else if (player.choice == choices.PAPER && computer.choice == choices.ROCK || computer.choice == choices.SPOCK) {
         // Paper covers rock and beats Spock - a win!
-        updateScore(0);
+        ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 2 && computerChoice == 1 || computerChoice == 4) {
+    } else if (player.choice == choices.SCISSORS && computer.choice == choices.PAPER || computer.choice == choices.LIZARD) {
         // Scissors cut paper and kills lizard - a win!
-        updateScore(0);
+        ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 3 && computerChoice == 2 || computerChoice == 0) {
+    } else if (player.choice == choices.SPOCK && computer.choice == choices.ROCK || computer.choice == choices.SCISSORS) {
         //Spock beats rock and scissors - a win!
-        updateScore(0);
+        ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 4 && computerChoice == 3 || computerChoice == 1) {
+    } else if (player.choice == choices.LIZARD && computer.choice == choices.PAPER || computer.choicehoice == choices.SPOCK) {
         //Lizard beats paper and Spock - a win!
-        updateScore(0);
+        ++score.wins;
         displayGameResult("win")
     } else {
         // All other combinations are losses
-        updateScore(2);
+        ++score.losses;
         displayGameResult("lose")
     }
 }
@@ -81,19 +94,14 @@ function displayGameResult(result){
         document.getElementById("result").className = "alert alert-info";
     }
 
-    updateMatchBoardBoard();
-}
-
-// Updates the score
-function updateScore(val){
-    ++score[val];
-    console.log("The score is now " + score);
+    displayScoreBoard();
 }
 
 // Function for displaying the score
-function updateMatchBoard(){
-    document.getElementById("wins").textContent = matches[0];
-    document.getElementById("losses").textContent = matches[1];
+function displayScoreBoard(winsId, lossesId, tiesId){
+    document.getElementById(winsId).textContent = score.wins;
+    document.getElementById(lossesId).textContent = score.losses;
+    document.getElementById(tiesId).textContent = score.ties;
 }
 
 // The button elements
