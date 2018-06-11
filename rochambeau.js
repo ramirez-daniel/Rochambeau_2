@@ -3,7 +3,9 @@ var Rochambeau = {
     choices: {
         ROCK: 0,
         PAPER: 1,
-        SCISSORS: 2
+        SCISSORS: 2,
+        SPOCK: 3,
+        LIZARD: 4
     },
 
     score: {
@@ -20,13 +22,13 @@ var Rochambeau = {
 
     player:  new Player(),
 
-    computer: new Player()
+    computer: new Player(),
 
     // Stores the player's choice, then call's the function for storing the computer's choice
-    storePlayerChoice: function(this.choice) {
+    storePlayerChoice: function(choice) {
         this.player.choice = choice;
         console.log("My choice = " + this.player.choice);
-        storeComputerChoice();
+        this.storeComputerChoice();
     },
 
     // Generate the computer's random choice
@@ -99,8 +101,13 @@ var Rochambeau = {
     },
 
     // The button elements
-    rockButton = document.getElementById("rock");
-    paperButton = document.getElementById("paper");
+    rockButton: document.getElementById("rock"),
+
+    paperButton: document.getElementById("paper")
+
+}
+
+
     scissorsButton = document.getElementById("scissors");
     spockButton = document.getElementById("spock");
     lizardButton = document.getElementById("lizard");
@@ -113,4 +120,3 @@ var Rochambeau = {
     spockButton.addEventListener('click', () => {storePlayerChoice(3)});
     lizardButton.addEventListener('click', () => {storePlayerChoice(4)});
     playButton.addEventListener('click', () => {playGame()});
-}
