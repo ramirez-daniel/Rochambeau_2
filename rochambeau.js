@@ -1,3 +1,4 @@
+var Player;
 var Rochambeau = {
 
     choices: {
@@ -20,9 +21,21 @@ var Rochambeau = {
         LOSS: -1
     },
 
-    player:  new Player(),
+    player: new Player(),
 
     computer: new Player(),
+
+    rockButton: document.getElementById("rock"),
+
+    paperButton: document.getElementById("paper"),
+
+    scissorsButton: document.getElementById("scissors"),
+
+    spockButton: document.getElementById("spock"),
+
+    lizardButton: document.getElementById("lizard"),
+
+    playButton: document.getElementById("play"),
 
     // Stores the player's choice, then call's the function for storing the computer's choice
     storePlayerChoice: function(choice) {
@@ -98,20 +111,8 @@ var Rochambeau = {
     document.getElementById(winsId).textContent = this.score.wins;
     document.getElementById(lossesId).textContent = this.score.losses;
     document.getElementById(tiesId).textContent = this.score.ties;
-    },
-
-    // The button elements
-    rockButton: document.getElementById("rock"),
-
-    paperButton: document.getElementById("paper")
-
+    }
 }
-
-
-    scissorsButton = document.getElementById("scissors");
-    spockButton = document.getElementById("spock");
-    lizardButton = document.getElementById("lizard");
-    playButton = document.getElementById("play");
 
     // Add the event handlers
     rockButton.addEventListener('click', () => {storePlayerChoice(0)});
